@@ -38,14 +38,43 @@ window.addEventListener('scroll', function(){
     }
 
     //Showing and hiding the back to top link
-    if(scrollHeight > 676){
+    if(scrollHeight > 500){
         topLink.classList.add('show-link');
     }else{
         topLink.classList.remove('show-link');
     }
-})
+});
 
 
 
 // ********** smooth scroll ************
-// select links
+const scrollLinks = document.querySelectorAll('.scroll-link');
+scrollLinks.forEach((link) =>{
+    link.addEventListener('click', function(e){
+        e.preventDefault();
+        const id =e.currentTarget.getAttribute('href').slice(1);
+        const element = document.getElementById(id);
+
+        //calculate the height
+        const navHeight = navbar.getBoundingClientRect().height;
+        const containerHeight = linksContainer.getBoundingClientRect().height;
+        const fixedNav = navbar.classList.contains('fixed-nav')
+
+        let position = element.offsetTop - navHeight;
+        if(!fixedNav){
+            position = position - navHeight;
+        }
+
+        if(navHeight > 82){
+            position = position + containerHeight;
+        }
+
+        window.scrollTo({
+            left: 0,
+            top: position,
+        });
+        //close linksContainer on small device after scroling to a pos.
+        linksContainer.style.height = 0;
+
+    });
+});
