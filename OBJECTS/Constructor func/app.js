@@ -18,3 +18,25 @@ Amanda.fullName();
 
 const Helene = new Person('Helene', 'Magnus');
 Helene.fullName();
+
+
+/*All object in javascript have access to constructor
+property that returns a contructor function that created it.
+Built in contructor functions, arrays an functions are object in javascript.
+*/
+
+const Sam = new Person('Samantha', 'Carter');
+console.log(Sam.constructor);
+
+const Stewie = {}
+console.log(Stewie.constructor);
+
+const list = [];
+console.log(list.constructor);
+
+const sayHi = function(){};
+console.log(sayHi.constructor);
+
+//we can use constructor to create new object
+const Stew = new Amanda.constructor('Stewie', ' G.Griffin');
+Stew.fullName();
