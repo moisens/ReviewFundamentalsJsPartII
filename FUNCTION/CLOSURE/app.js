@@ -42,5 +42,42 @@ const brian = newAccount('Brian', 300);
 stewie();
 brian();
 
-
+console.log('--------complete exemple--------');
 //complete exemple
+
+function newAccount2(name, initialBalance){
+    let balance = initialBalance;
+    function showBalance(){
+        console.log(`Hey ${name}, your balance is ${balance}`);
+    }
+
+    function deposit(amount){
+        balance += amount;
+        showBalance();
+    }
+
+    function withdraw(amount){
+        if(amount > balance){
+            console.log(`Hey, ${name}, sorry not enough funds `);
+            return;
+        }
+        balance -= amount;
+    }
+
+    return {
+        showBalance: showBalance,
+        deposit: deposit,
+        withdraw: withdraw
+    };
+}
+
+
+
+const peter = newAccount2('Peter', 1000);
+const lois = newAccount2('Lois', 1300);
+
+peter.showBalance();
+lois.showBalance();
+lois.deposit(2500);
+lois.withdraw(3300);
+lois.showBalance();
