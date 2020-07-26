@@ -67,6 +67,7 @@ class UI{
             }, 4000);
         }else{
             let amount = parseInt(amountValue);
+            console.log(amount);
             this.expenseInput.value = '';
             this.amountInput.value = '';
 
