@@ -17,4 +17,17 @@ const [sam, tealc, daniel,, cameron] = friends
 console.log(sam, tealc, daniel, cameron);
 
 
+//Destructuring swap variables
+let first = 'McKey';
+let second = 'shepard';
+
+// let temp = second;
+// second = first;
+// first = temp;
+
+
+[second, first] = [first, second]
+
+console.log(first, second);
+
 
