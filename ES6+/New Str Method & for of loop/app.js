@@ -19,3 +19,36 @@ console.log(employee.includes('HELENE'));//true
 const multiplyPeople = (person, amount = 5) => person.repeat(amount);
 const people = multiplyPeople(manager, 2);
 console.log(people);
+
+
+//FOR OF LOOP
+//for of - loops trough the values of an iterable object
+//string, Array, Map, Set etc - NOT OBJECT
+//unlike forEach, we can use break, continue
+
+const fruits = ['apple', 'orange', 'banana', 'peach'];
+const longNname = 'James Tiberius Kirk';
+let shortName = '';
+
+for (const letter of longNname){
+    //console.log(letter);
+    if(letter === ' '){
+        continue;
+    }else{
+        shortName += letter;
+    }
+
+}
+// document.body.innerHTML += shortName
+console.log(shortName);
+
+for(const fruit of fruits){
+    //console.log(fruit);
+    if(fruit === 'banana'){
+        continue;
+    }else{
+        console.log(fruit);
+    }
+}
+
+
