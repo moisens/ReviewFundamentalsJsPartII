@@ -3,7 +3,7 @@ const btn = document.querySelector('.btn');
 btn.addEventListener('click', function(){
     console.log(this);
     setTimeout(() => {
-        this.style.color = '#000'
+        this.style.color = '#000';
     }, 2000);
 });
 //If we use a fat arr function on the same event, it'll throw an error
