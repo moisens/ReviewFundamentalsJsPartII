@@ -31,3 +31,26 @@ let second = 'shepard';
 console.log(first, second);
 
 
+
+//Destructuring 
+//Object into variables
+//object
+
+const dean = {
+    firsts: 'Dean',
+    last: 'Winchester',
+    city: 'everywhere',
+    siblings:{
+        brother: 'Sam'
+    }
+}
+
+// const firstName = dean.firsts;
+// const lastName = dean.last;
+// const city = dean.city;
+// const sibling = dean.siblings.brother;
+
+// console.log(firstName, lastName, city, sibling);
+
+const {firsts: firstname, last, city, zip, siblings:{brother:Sam}} = dean;
+console.log(firstname, last, zip, city, Sam);
