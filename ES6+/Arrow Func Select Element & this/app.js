@@ -11,4 +11,16 @@ btn.addEventListener('click', function(){
 //but if we add in the event a method like setTimeout, reg func will throw an err, fat arr func can solve the problem
 
 
+//Default Parameters and Hoisting gotchas
 
+const brian = 'Brian';
+const stewie = 'Stewart';
+
+function sayHi(person = 'Stranger'){
+    console.log(`Hi ${person}`);
+}
+
+const sayHello = (person = 'Stranger') => console.log(`Hello ${person}`);
+
+sayHi();
+sayHello();
