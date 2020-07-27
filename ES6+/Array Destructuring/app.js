@@ -31,7 +31,7 @@ let second = 'shepard';
 console.log(first, second);
 
 
-
+console.log('-----destructuring--object----');
 //Destructuring 
 //Object into variables
 //object
@@ -54,3 +54,23 @@ const dean = {
 
 const {firsts: firstname, last, city, zip, siblings:{brother:Sam}} = dean;
 console.log(firstname, last, zip, city, Sam);
+
+console.log('----destructuring---function---');
+
+//destructuring function as an argument
+
+const chris = {
+    first: 'Chris',
+    last: 'Griffin',
+    city: 'Quahog',
+    siblings:{
+        brother: 'Stewie',
+        sister: 'Meg'
+    }
+};
+
+function printPerson({first, last, city, siblings:{brother:stew, sister:meg}}){
+    // const {first, last, city, siblings:{brother:stew, sister:meg}} = person;
+    console.log(first, last, city, stew, meg);
+}
+printPerson(chris);
