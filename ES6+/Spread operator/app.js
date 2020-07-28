@@ -38,3 +38,31 @@ const newPerson = {...person, city: 'Vancouver', name: 'Samantha'};
 console.log(newPerson);
 
 console.log('----spread operator---DOM element----');
+
+const headings = document.querySelectorAll('h1');
+const result = document.getElementById('result');
+
+console.log(headings);
+
+const text = [...headings]
+.map(item => `<span>${item.textContent}</span>`)
+.join(' ')
+result.innerHTML = text;
+
+
+console.log('----spread operator within function');
+
+//Spread operator - functions arguments
+const numbers = [23, 44, 66,88, 876];
+console.log(Math.max(numbers));//NaN Because Math.max don't accept arrays
+console.log(Math.max(...numbers));
+
+const amanda = ['Amanda', 'Tapping']
+const sayHello = (name, lastName) =>{
+    console.log(`Hello ${name} ${lastName}`);
+}
+
+sayHello(amanda[0], amanda[1])
+//faster
+sayHello(...amanda);
+
