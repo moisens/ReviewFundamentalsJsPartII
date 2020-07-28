@@ -2,6 +2,8 @@
 //Allows an iterable to spread/expand individually inside reciever
 //split into single items and copy them
 //ES2018 - ES8 
+//spraed operator for the arguments
+//rest operator for parameters
 
 const udemy = 'udemy';
 const letters = [...udemy];
@@ -66,3 +68,34 @@ sayHello(amanda[0], amanda[1])
 //faster
 sayHello(...amanda);
 
+console.log('------Rest operator----');
+
+//Rest spread operator
+//gathers/collects the items
+
+//arrays
+const fruit = ['apple', 'orange', 'lemon', 'banana', 'grape'];
+const [first,second, ...fruits] = fruit; //...fruits refers to the rest in the array
+console.log(first, fruits);
+
+//objects
+const personn = {nom: 'Helene', lastname: 'Magnus', job: 'Scientist'}
+const {job, ...rest} = personn;
+console.log(job, rest);
+
+const testScores = [99,200, 790, 800]
+
+//Collecting parameters when passing into a function
+
+const getAverage = (name, ...scores) => {
+    console.log(name);
+    console.log(scores);
+    let total = 0;
+    for(const score of scores){
+        total += score;
+    }
+    console.log(total);//addition of all scores
+    console.log(`${name}'s average score is ${total/scores.length}`);
+}
+getAverage(person.name, 99,200, 790);
+getAverage(person.name, ...testScores)
