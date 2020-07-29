@@ -29,4 +29,25 @@ function countTotal(){
     }, 0);
     console.log(total);
 }
-countTotal(67,99, 59,400)
+countTotal(67,99, 59,400);
+
+console.log('---Array.from - DOM Elements(NodeList)---');
+//Array.from - DOM Elements(NodeList)
+const p = document.querySelectorAll('p');
+const result = document.getElementById('result');
+const second = document.getElementById('second');
+
+let newText = Array.from(p);
+console.log(newText);
+newText = newText.map((item) =>{
+    return `<span>${item.textContent}</span>`;
+}).join(' ');
+
+result.innerHTML = newText
+
+//Shorter way
+const text = Array.from(document.querySelectorAll('p'), (item)=>{// const text = Array.from(p, (item)=>{......})
+    return `<span>${item.textContent}</span>`;
+}).join(' ')
+
+second.innerHTML = text;
