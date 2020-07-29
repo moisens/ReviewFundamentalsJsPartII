@@ -1,5 +1,6 @@
 //Asynchronous
 //Borwser!!! fetch data, Get geolocalisation setTimeout, setTimer, etc
+//asynchronous simply means that things are happend in the background
 
 boilWater(1000);
 console.log('chop carrots');
