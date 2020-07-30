@@ -34,7 +34,7 @@ console.log(promise);
 console.log('--------------------------------------');
 //Reject example
 btn.addEventListener('click', ()=>{
-    //console.log(loadImage(url));
+    console.log(loadImage(url));
     loadImage(url)
     .then((data) => container.appendChild(data))
     .catch((err) => console.log(err))
