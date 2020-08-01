@@ -6,7 +6,7 @@ import displayDrinks from './DisplayDrink.js';
 const showDrinks = async (url) => {
     console.log(url);
     //fetch drinks
-    const data = await fetchDrinks(url)
+    const data = await fetchDrinks(url);
     
 
     //display drinks

@@ -1,4 +1,6 @@
 import showDrinks from './utils/presentDrink.js';
+import './utils/searchForm.js';
+
 
 const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a';
 
