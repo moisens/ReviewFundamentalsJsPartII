@@ -1,6 +1,6 @@
 //variables
 const cartBtn = document.querySelector('.cart-btn');
-const closeCartBtn = document.querySelector('.close-cart-btn');
+const closeCartBtn = document.querySelector('.close-cart');
 const clearCartBtn = document.querySelector('.clear-btn');
 const cartDom = document.querySelector('.cart');
 const cartOverlay = document.querySelector('.cart-overlay');
@@ -88,6 +88,7 @@ class UI{
                 this.addCartItem(cartItem);
 
                 //show the cart
+                this.showCart();
             });
             
 
@@ -104,7 +105,7 @@ class UI{
         cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
         cartItems.innerText = itemsTotal;
     }
-
+    //display cart item
     addCartItem(item){
         const div = document.createElement('div');
         div.classList.add('cart-item');
@@ -121,8 +122,37 @@ class UI{
             <i class="fas fa-chevron-down" data-id=${item.id}></i>
         </div>`;
         cartContent.appendChild(div);
-        console.log(cartContent);
     }
+
+    //show cart
+    showCart(){
+        cartOverlay.classList.add('transparentBcg');
+        cartDom.classList.add('showCart');
+
+    }
+
+    //set up app
+      setupAPP(){
+        cart = Storage.getCart();
+        this.setCartValues(cart);
+        this.populateCart(cart);
+        cartBtn.addEventListener('click', this.showCart);
+        closeCartBtn.addEventListener('click', this.hideCart);
+      }
+
+      //populate Cart method
+      populateCart(cart){
+        cart.forEach((item) => {
+            this.addCartItem(item);
+        });
+
+      }
+
+      //hide cart
+      hideCart(){
+        cartOverlay.classList.remove('transparentBcg');
+        cartDom.classList.remove('showCart');
+      }
     
 
 }
@@ -141,6 +171,12 @@ class Storage{
     static saveCart(cart){
         localStorage.setItem('cart', JSON.stringify(cart));
     }
+
+    static getCart(){
+        return localStorage.getItem('cart') 
+        ? JSON.parse(localStorage.getItem('cart'))
+        : [];
+    }
     
 
 }
@@ -152,6 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const ui = new UI();
     //create new instance of Product
     const products = new Products();
+
+    //set up Application
+    ui.setupAPP();
 
     //get all products
     products.getProducts()
