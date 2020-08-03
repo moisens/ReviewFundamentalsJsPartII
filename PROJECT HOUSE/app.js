@@ -8,10 +8,14 @@ const cartItems = document.querySelector('.cart-items');
 const cartTotal = document.querySelector('.cart-total');
 const cartContent = document.querySelector('.cart-content');
 const productDom = document.querySelector('.products-center');
+
+
 //cart
 let cart = [];
 //btns
 let buttonsDom = [];
+
+
 
 //getting the product
 class Products{
@@ -35,6 +39,8 @@ class Products{
         }
     }
 }
+
+
 
 //display products
 class UI{
@@ -160,8 +166,45 @@ class UI{
           clearCartBtn.addEventListener('click', ()=> {
             this.clearCart();
           });
+          //Cart functionality
+          cartContent.addEventListener('click', (e) => {
+              if(e.target.classList.contains('remove-item')){
+                  let removeItem = e.target;
+                  let id = removeItem.dataset.id;
+                  //removing from the DOM
+                  cartContent.removeChild(removeItem.parentElement.parentElement);
+                  this.removeItem(id);//remove from the cart
+
+              }else if(e.target.classList.contains('fa-chevron-up')){
+                let addAmount = e.target;
+                let id = addAmount.dataset.id;
+                let tempItem = cart.find(item => item.id === id);
+                tempItem.amount = tempItem.amount + 1;
+                //update the local storage
+                Storage.saveCart(cart);
+                //increasing the amount and total
+                this.setCartValues(cart);
+                addAmount.nextElementSibling.innerText = tempItem.amount;
+
+              }else if(e.target.classList.contains('fa-chevron-down')){
+                let lowerAmount = e.target;
+                let id = lowerAmount.dataset.id;
+                let tempItem = cart.find(item => item.id === id);
+                tempItem.amount = tempItem.amount - 1;
+
+                if(tempItem.amount  > 0){
+                    Storage.saveCart(cart);
+                    this.setCartValues(cart);
+                    lowerAmount.previousElementSibling.innerText = tempItem.amount;
+                }else{
+                    cartContent.removeChild(lowerAmount.parentElement.parentElement);
+                    this.removeItem(id);
+                }
+              }
+
+          });
       }
-      //Cart functionality
+      
       //Clear Cart method
       clearCart(){
           let cartItems = cart.map((item) => {
@@ -195,6 +238,8 @@ class UI{
     
 
 }
+
+
 
 //local storage
 class Storage{
