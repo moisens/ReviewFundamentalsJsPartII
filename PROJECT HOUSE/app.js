@@ -1,7 +1,7 @@
 //variables
 const cartBtn = document.querySelector('.cart-btn');
 const closeCartBtn = document.querySelector('.close-cart');
-const clearCartBtn = document.querySelector('.clear-btn');
+const clearCartBtn = document.querySelector('.clear-cart');
 const cartDom = document.querySelector('.cart');
 const cartOverlay = document.querySelector('.cart-overlay');
 const cartItems = document.querySelector('.cart-items');
@@ -47,7 +47,7 @@ class UI{
                     <img src=${product.image} alt="product" class="product-img">
                     <button class="bag-btn" data-id=${product.id}>
                         <i class="fas fa-shopping-cart"></i>
-                        add to bag
+                        add to cart
                     </button>
                 </div>
                 <h3>${product.title}</h3>
@@ -153,6 +153,45 @@ class UI{
         cartOverlay.classList.remove('transparentBcg');
         cartDom.classList.remove('showCart');
       }
+
+      //cartLogic
+      cartLogic(){
+          //clear cart Btn
+          clearCartBtn.addEventListener('click', ()=> {
+            this.clearCart();
+          });
+      }
+      //Cart functionality
+      //Clear Cart method
+      clearCart(){
+          let cartItems = cart.map((item) => {
+              return item.id;
+          });
+          cartItems.forEach((id) => {
+              this.removeItem(id);
+          });
+          console.log(cartContent.children);
+          //remove item from the dom
+          while(cartContent.children.length > 0){
+              cartContent.removeChild(cartContent.children[0])
+          }
+          this.hideCart();
+          
+      }
+
+      //remove Item from the cart
+      removeItem(id){
+          cart = cart.filter(item => item.id !== id);
+          this.setCartValues(cart);
+          Storage.saveCart(cart);
+          let button = this.getSingleButton(id);
+          button.disabled = false;
+          button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
+        
+      }
+      getSingleButton(id){
+          return buttonsDom.find(button => button.dataset.id === id);
+      }
     
 
 }
@@ -200,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(() => {
         ui.getBagButtons();
+        ui.cartLogic();
     })
     
 });
